@@ -1,0 +1,179 @@
+header {
+  width: 100%;
+  padding-top: 16px;
+}
+
+.navbar {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  li {
+    margin-left: 24px;
+  }
+  @include responsive() {
+    display: none;
+  }
+}
+
+@keyframes anim-mobile-menu{
+  from{
+    opacity: 0;
+    height:0%
+  }
+  to{
+    opacity: 1;
+    height:35vh;
+  }
+}
+
+.nav-list-mobile {
+  list-style: none;
+  position:absolute;
+  top: 100px;
+  z-index: 999;
+  background-color:$red-dark;
+  width:100%;
+  height:35vh;
+  left:0;
+  display: none;
+  transition: .7s ease;
+  li {
+    margin-left: 24px;
+  }
+  &.active{
+    display: block;
+    transition: .7s ease;
+    animation: anim-mobile-menu .5s ease;
+  }
+}
+
+.nav-list li:last-child a{
+  color:$red;
+}
+
+.logo {
+  max-width: 88px;
+}
+
+.nav-link {
+  display: inline-block;
+  color: $gray-3;
+  padding: 8px 16px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 200;
+  position: relative;
+  transition: 0.7s ease;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 0px;
+    background: linear-gradient(
+      360deg,
+      #ea1d22 2.73%,
+      rgba(234, 29, 34, 0.2) 100%
+    );
+    left: 50%;
+    top: -40px;
+    transition: 0.7s ease;
+  }
+
+  &:hover {
+    color: $white-light;
+    &::after {
+      height: 40px;
+    }
+  }
+  @include responsive-mobile() {
+    color:$white;
+  }
+  @include responsive() {
+    color:$white;
+  }
+}
+
+.bx {
+  @include responsive() {
+    display: block;
+  }
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 15%;
+
+    background-color: $red;
+    transition: 1s ease;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 40%;
+    height: 15%;
+
+    background-color: $red;
+    transition: 1s ease;
+  }
+}
+
+.bx.active::after {
+  transform: rotate(225deg);
+  top: 45%;
+}
+
+.bx.active::before {
+  transform: rotate(-225deg);
+  top: 45%;
+  left:15%;
+  width: 70%;
+  height: 15%;
+}
+
+.nav-social {
+  @include responsive() {
+    display: none;
+  }
+  display: flex;
+  svg {
+    cursor: pointer;
+    margin-left: 16px;
+    width: 24px;
+    path,
+    circle {
+      transition: 0.7s ease;
+    }
+    &:hover {
+      path,
+      circle {
+        fill: $red-light;
+        transform: translate3d(0, -3px, 0);
+      }
+    }
+  }
+}
